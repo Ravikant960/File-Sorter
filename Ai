@@ -1,0 +1,233 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   AI Voice Programming Mobile App
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+ </head>
+ <body class="bg-gray-100 min-h-screen flex flex-col">
+  <header class="bg-white shadow-md">
+   <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+     <img alt="AI voice assistant logo, blue and white icon representing a microphone with sound waves" class="w-12 h-12" height="48" src="https://storage.googleapis.com/a1aa/image/b5d47202-efec-430c-a3d7-41fd95b646f6.jpg" width="48"/>
+     <h1 class="text-2xl font-semibold text-gray-800">
+      AI Voice Control
+     </h1>
+    </div>
+    <nav class="hidden md:flex space-x-6 text-gray-600 font-medium">
+     <a class="hover:text-blue-600 transition" href="#">
+      Home
+     </a>
+     <a class="hover:text-blue-600 transition" href="#">
+      Features
+     </a>
+     <a class="hover:text-blue-600 transition" href="#">
+      Apps
+     </a>
+     <a class="hover:text-blue-600 transition" href="#">
+      Settings
+     </a>
+    </nav>
+    <button aria-label="Open menu" class="md:hidden text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600" id="menu-btn">
+     <i class="fas fa-bars fa-lg">
+     </i>
+    </button>
+   </div>
+   <nav aria-label="Mobile menu" class="md:hidden bg-white shadow-md hidden px-4 py-3 space-y-2" id="mobile-menu">
+    <a class="block text-gray-700 font-medium hover:text-blue-600 transition" href="#">
+     Home
+    </a>
+    <a class="block text-gray-700 font-medium hover:text-blue-600 transition" href="#">
+     Features
+    </a>
+    <a class="block text-gray-700 font-medium hover:text-blue-600 transition" href="#">
+     Apps
+    </a>
+    <a class="block text-gray-700 font-medium hover:text-blue-600 transition" href="#">
+     Settings
+    </a>
+   </nav>
+  </header>
+  <main class="flex-grow container mx-auto px-4 py-8">
+   <section class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-4 text-center">
+     AI Voice Programming &amp; Mobile Control
+    </h2>
+    <p class="text-gray-600 mb-6 text-center">
+     Use your voice to control all apps and functions on your mobile device seamlessly.
+    </p>
+    <div class="flex flex-col items-center space-y-6">
+     <img alt="Modern smartphone displaying AI voice command interface with waveform and app icons around it" class="rounded-lg shadow-md w-64 h-64 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/205eaaf0-7e30-418c-34e6-34db0981ed47.jpg" width="300"/>
+     <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-md flex items-center space-x-3 focus:outline-none focus:ring-4 focus:ring-blue-300" id="start-btn">
+      <i class="fas fa-microphone fa-lg">
+      </i>
+      <span>
+       Start Voice Command
+      </span>
+     </button>
+     <div class="w-full bg-gray-100 rounded-md p-4 min-h-[100px] text-gray-700 text-center text-lg font-medium select-text" id="transcript">
+      Say something to control your device...
+     </div>
+    </div>
+   </section>
+   <section class="max-w-3xl mx-auto mt-12 bg-white rounded-lg shadow-lg p-6">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">
+     Supported Commands
+    </h3>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 text-lg list-disc list-inside">
+     <li>
+      Open any app (e.g., "Open WhatsApp")
+     </li>
+     <li>
+      Send a message (e.g., "Send message to John")
+     </li>
+     <li>
+      Make a phone call (e.g., "Call Mom")
+     </li>
+     <li>
+      Set an alarm or reminder
+     </li>
+     <li>
+      Play music or videos
+     </li>
+     <li>
+      Adjust volume or brightness
+     </li>
+     <li>
+      Navigate to a location
+     </li>
+     <li>
+      Take a photo or video
+     </li>
+     <li>
+      Check battery status
+     </li>
+     <li>
+      Turn on/off Wi-Fi or Bluetooth
+     </li>
+     <li>
+      Read notifications aloud
+     </li>
+     <li>
+      Open settings menu
+     </li>
+     <li>
+      Search the web
+     </li>
+     <li>
+      Translate phrases
+     </li>
+     <li>
+      Control smart home devices
+     </li>
+    </ul>
+   </section>
+  </main>
+  <footer class="bg-white border-t mt-12">
+   <div class="container mx-auto px-4 py-6 text-center text-gray-600 text-sm">
+    © 2024 AI Voice Programming. All rights reserved.
+   </div>
+  </footer>
+  <script>
+   const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    const startBtn = document.getElementById('start-btn');
+    const transcriptDiv = document.getElementById('transcript');
+
+    // Check for browser support
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition || null;
+
+    if (!SpeechRecognition) {
+      transcriptDiv.textContent =
+        'Sorry, your browser does not support Speech Recognition.';
+      startBtn.disabled = true;
+      startBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    } else {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+
+      recognition.onstart = () => {
+        transcriptDiv.textContent = 'Listening... Please speak now.';
+        startBtn.disabled = true;
+        startBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      };
+
+      recognition.onerror = (event) => {
+        transcriptDiv.textContent = `Error occurred in recognition: ${event.error}`;
+        startBtn.disabled = false;
+        startBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      };
+
+      recognition.onend = () => {
+        startBtn.disabled = false;
+        startBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      };
+
+      recognition.onresult = (event) => {
+        let interimTranscript = '';
+        let finalTranscript = '';
+
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+          if (event.results[i].isFinal) {
+            finalTranscript += transcript;
+          } else {
+            interimTranscript += transcript;
+          }
+        }
+
+        transcriptDiv.textContent = finalTranscript || interimTranscript;
+
+        if (finalTranscript) {
+          processCommand(finalTranscript.toLowerCase());
+        }
+      };
+
+      startBtn.addEventListener('click', () => {
+        recognition.start();
+      });
+
+      function processCommand(command) {
+        // Basic command processing simulation
+        if (command.includes('open')) {
+          const app = command.replace('open', '').trim();
+          transcriptDiv.textContent = `Opening ${app}... (simulated)`;
+        } else if (command.includes('call')) {
+          const contact = command.replace('call', '').trim();
+          transcriptDiv.textContent = `Calling ${contact}... (simulated)`;
+        } else if (command.includes('send message to')) {
+          const contact = command.replace('send message to', '').trim();
+          transcriptDiv.textContent = `Preparing message to ${contact}... (simulated)`;
+        } else if (command.includes('set alarm')) {
+          transcriptDiv.textContent = 'Setting alarm... (simulated)';
+        } else if (command.includes('play music')) {
+          transcriptDiv.textContent = 'Playing music... (simulated)';
+        } else if (command.includes('turn on wifi')) {
+          transcriptDiv.textContent = 'Turning on Wi-Fi... (simulated)';
+        } else if (command.includes('turn off wifi')) {
+          transcriptDiv.textContent = 'Turning off Wi-Fi... (simulated)';
+        } else {
+          transcriptDiv.textContent = `Command not recognized: "${command}"`;
+        }
+      }
+    }
+  </script>
+ </body>
+</html>
